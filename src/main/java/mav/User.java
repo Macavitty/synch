@@ -3,6 +3,7 @@ package mav;
 public class User {
     private String userid;
     private String postedvideo;
+    private String mergedvideo;
     private Integer score;
 
     public User(String userid) {
@@ -44,4 +45,11 @@ public class User {
         this.score = score;
     }
 
+    public String getMergedvideo() {
+        return mergedvideo;
+    }
+
+    public void setMergedvideo(String mergedvideo) {
+        this.mergedvideo = mergedvideo;
+    }
 }
