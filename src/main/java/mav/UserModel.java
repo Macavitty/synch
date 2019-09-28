@@ -1,21 +1,21 @@
 package mav;
 
-public class User {
+public class UserModel {
     private String userid;
     private String postedvideo;
     private String mergedvideo;
     private Integer score;
 
-    public User(String userid) {
+    public UserModel(String userid) {
         this.userid = userid;
     }
 
-    public User(String userid, String postedvideo) {
+    public UserModel(String userid, String postedvideo) {
         this.userid = userid;
         this.postedvideo = postedvideo;
     }
 
-    public User(String userid, String postedvideo, Integer score) {
+    public UserModel(String userid, String postedvideo, Integer score) {
         this.userid = userid;
         this.postedvideo = postedvideo;
         this.score = score;
