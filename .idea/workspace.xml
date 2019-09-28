@@ -3,19 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="d98809e5-4201-4d7c-adf8-c29f5802d2c3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/merge.sh" beforeDir="false" afterPath="$PROJECT_DIR$/merge.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archive-1.0-SNAPSHOT-jar-with-dependencies.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mav/FireManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mav/FireManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mav/PoseEstimation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mav/PoseEstimation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mav/VideoManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mav/VideoManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/archive-1.0-SNAPSHOT-jar-with-dependencies.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/archive-1.0-SNAPSHOT-jar-with-dependencies.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/archive-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/archive-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mav/FireManager$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mav/FireManager$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mav/FireManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mav/FireManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mav/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/videos_merged/123_merged.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/videos_posted/123.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mav/VideoManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mav/VideoManager.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

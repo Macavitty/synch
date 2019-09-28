@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class FireManager {
 
-    private File workingDir = new File(FileSystems.getDefault().getPath(".").toString());
+    private File workingDir = new File("/home/ubuntu");
     private File videosPosted, videosMerged;
     private final String VIDEOS_POSTED_DIR = workingDir + "/videos_posted";
     private final String VIDEOS_MERGED_DIR = workingDir + "/videos_merged";

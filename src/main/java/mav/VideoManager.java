@@ -9,10 +9,9 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.nio.file.FileSystems;
 
 public class VideoManager {
-    private File workingDir = new File(FileSystems.getDefault().getPath(".").toString());
+    private File workingDir = new File("/home/ubuntu");
     private File videosPosted, videosMerged;
     private final String VIDEOS_POSTED_DIR = workingDir + "/videos_posted";
     private final String VIDEOS_MERGED_DIR = workingDir + "/videos_merged";
