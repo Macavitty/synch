@@ -18,11 +18,11 @@ public class Main {
         // because log4j wants it
         BasicConfigurator.configure();
 
-//        FireVideoManager fireVideoManager = new FireVideoManager();
-//        fireVideoManager.justListen();
+        FireManager fireManager = new FireManager();
+        fireManager.justListenForNewVideo();
 
-        PoseEstimation doSomething = new PoseEstimation();
-        doSomething.ranIgorScript(workingDir + "/script.py", "orig.mp4", "user.mp4");
+//        PoseEstimation doSomething = new PoseEstimation();
+//        doSomething.ranIgorScript(workingDir + "/script.py", "orig.mp4", "user.mp4");
     }
 
 }

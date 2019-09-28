@@ -11,47 +11,77 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.file.FileSystems;
-import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.Map;
 
-public class FireVideoManager {
+public class FireManager {
 
     private FirebaseOptions options;
-    PoseEstimation script;
+    PoseEstimation poseEstimation;
+//    DatabaseReference usersRef;
+    DatabaseReference dbRef;
 
     private File workingDir = new File(FileSystems.getDefault().getPath(".").toString());
+    public Map<String, User> users = new HashMap<>();
 
-    FileInputStream serviceKeysJson = new FileInputStream(workingDir + "/expensivevkchat-firebase-adminsdk-cqssj-b84457cad2.json");
+    FileInputStream serviceKeysJson = new FileInputStream(workingDir + "/goalchallenge-8de36-firebase-adminsdk-cs8im-41908d0450.json");
     private final String VIDEOS_FOLDER = workingDir + "/videos_folder";
     File videosFolder;
 
-    public FireVideoManager() throws IOException {
+    public FireManager() throws IOException {
         videosFolder = new File(VIDEOS_FOLDER);
         boolean created = videosFolder.mkdir();
-        script = new PoseEstimation();
+        poseEstimation = new PoseEstimation();
         initFire();
     }
 
     public void initFire() throws IOException {
         options = new FirebaseOptions.Builder()
-                .setCredentials(GoogleCredentials.getApplicationDefault())
-                .setDatabaseUrl("https://expensivevkchat.firebaseio.com/")
+                .setCredentials(GoogleCredentials.fromStream(serviceKeysJson))
+                .setDatabaseUrl("https://goalchallenge-8de36.firebaseio.com/")
                 .build();
         FirebaseApp.initializeApp(options);
         initDataBase();
     }
 
     private void initDataBase() throws FileNotFoundException {
-        DatabaseReference ref = FirebaseDatabase.getInstance()
+        dbRef = FirebaseDatabase.getInstance()
                 .getReference("videos");
-        ref.addChildEventListener(new ChildEventListener() {
+//        usersRef = dbRef.child("videos");
+        dbRef.addChildEventListener(new ChildEventListener() {
 
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
+                User usr;
                 System.out.println("Getting video  . . . . . . . . . . . ");
                 try {
+                    /*
+                    * MAIN
+                    * */
+                    String snapKey = dataSnapshot.getKey();
+                    String uid = dataSnapshot.child("userid").getValue().toString();
+                    System.out.println("UID is " + uid);
+                    if (!users.containsKey(snapKey)){
+                        System.out.println("TRUE " + dataSnapshot.child("postedvideo").getValue().toString());
+                        usr = new User(uid, dataSnapshot.child("postedvideo").getValue().toString(), -10);
+                        users.put(snapKey, usr);
+                    }
+                    else{
+                        System.out.println("FALSE");
+                        // user participates in new challenge
+                        usr = users.get(snapKey);
+//                        usr.setPostedvideo("");
+                        usr.setScore(0);
+                    }
+                    System.out.println("HERE");
                     String downPath = downloadVideo(getVideoUrl(dataSnapshot));
-                    // todo call script
-                    script.ranIgorScript("path", "orig", downPath);
+                    System.out.println("FOUND video: " + downPath);
+//                    usr.setPostedvideo(downPath);
+                    Integer score = poseEstimation.ranIgorScript(workingDir + "/script.py", "orig", downPath);
+                    System.out.println("SCORE: " + score);
+                    usr.setScore(score);
+                    // upd in database
+                    updUser(snapKey, usr);
 
                 } catch (MalformedURLException | URISyntaxException e) {
                     System.out.println("Soryan, I can`t download this for you, probably the url is not valid");
@@ -83,13 +113,14 @@ public class FireVideoManager {
         });
     }
 
-    void justListen() {
+    void justListenForNewVideo() {
         while (true) {
         }
     }
 
     private URL getVideoUrl(DataSnapshot dataSnapshot) throws MalformedURLException, URISyntaxException {
-        return new URL(dataSnapshot.child("video").getValue().toString());
+
+        return new URL(dataSnapshot.child("postedvideo").getValue().toString());
 
     }
 
@@ -99,26 +130,35 @@ public class FireVideoManager {
     }
 
     private String downloadVideo(URL videoUrl) {
+        System.out.println("ONE");
+
         InputStream is = null;
         BufferedOutputStream outStream = null;
         try {
             byte[] buf;
             int byteRead, byteWritten = 0;
+            System.out.println("ONE");
             outStream = new BufferedOutputStream(new FileOutputStream(videosFolder + "/" + getVideoName(videoUrl)));
+            System.out.println("ONE");
 
             URLConnection conn = videoUrl.openConnection();
+            System.out.println("ONE");
             is = conn.getInputStream();
             buf = new byte[59];
             while ((byteRead = is.read(buf)) != -1) {
                 outStream.write(buf, 0, byteRead);
                 byteWritten += byteRead;
+                System.out.println("Writet" + byteWritten);
             }
 
+            System.out.println("ONE");
         } catch (Exception e) {
+            System.out.println("ONE");
             System.out.println("Oops, IO error " + videoUrl);
             e.printStackTrace();
         } finally {
             try {
+                System.out.println("ONE");
                 assert is != null;
                 is.close();
                 outStream.close();
@@ -127,8 +167,13 @@ public class FireVideoManager {
                 e.printStackTrace();
             }
         }
+        System.out.println("ONE");
+
         return videosFolder + "/" + getVideoName(videoUrl);
     }
 
-
+    private void updUser (String key, User user) {
+        System.out.println("Updating user");
+        dbRef.child(key).setValueAsync(user);
+    }
 }
