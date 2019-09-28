@@ -16,22 +16,35 @@ public class VideoManager {
     private File videosPosted, videosMerged;
     private final String VIDEOS_POSTED_DIR = workingDir + "/videos_posted";
     private final String VIDEOS_MERGED_DIR = workingDir + "/videos_merged";
-    private final String ORIGIN_VIDEO = workingDir + "/repeat_me.mp4";
+    private final String ORIGIN_VIDEO = workingDir + "/video_cutted.mp4";
 
-    public VideoManager(){
+    public VideoManager() {
         videosMerged = new File(VIDEOS_MERGED_DIR);
+        if (videosMerged.exists()) {
+            new File(VIDEOS_MERGED_DIR + "/123_merged.mp4").deleteOnExit();
+            videosMerged.delete();
+        }
+
         videosPosted = new File(VIDEOS_POSTED_DIR);
+        if (videosPosted.exists()) {
+            new File(VIDEOS_POSTED_DIR + "/123.mp4").deleteOnExit();
+            videosPosted.delete();
+        }
+
         boolean createdP = videosPosted.mkdir();
         boolean createdM = videosMerged.mkdir();
 
     }
+
     String downloadVideo(URL videoUrl) {
+        new File(VIDEOS_POSTED_DIR + "/123.mp4").deleteOnExit();
+
         InputStream is = null;
         BufferedOutputStream outStream = null;
         try {
             byte[] buf;
             int byteRead, byteWritten = 0;
-            outStream = new BufferedOutputStream(new FileOutputStream(videosPosted +  "/123.mp4"));
+            outStream = new BufferedOutputStream(new FileOutputStream(videosPosted  + "/123.mp4"));
 
             URLConnection conn = videoUrl.openConnection();
             is = conn.getInputStream();
@@ -72,12 +85,19 @@ public class VideoManager {
     }
 
 
-    String createMergedVideo(String origin, String posted) throws IOException {
+    String createMergedVideo(String origin, String posted, Integer score) throws IOException, InterruptedException {
         System.out.println("MERGING .... ");
         String mergedPath = videosMerged + "/123" + "_merged.mp4";
-        // run script, return result
+        String tmpPath = videosMerged + "/tmp" + "_merged.mp4";
+        new File(mergedPath).deleteOnExit();
+        new File(tmpPath).deleteOnExit();
 
-        Process p = Runtime.getRuntime().exec(new String[]{"./merge.sh", origin, posted, mergedPath});
+        // run script, return result
+        Thread.sleep(2000);
+
+
+        Process p = Runtime.getRuntime().exec(new String[]{"./merge.sh", origin, posted, score.toString() ,mergedPath, tmpPath});
+
         BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
         while ((in.readLine()) != null) {
             // wait till read
@@ -88,11 +108,25 @@ public class VideoManager {
 
     String loadMergedVideo(String path, Bucket bucket) throws FileNotFoundException {
         InputStream testFile = new FileInputStream(path);
-        System.out.println(path);
-        String blobString = "folder/" + path;
+        String blobString = "folder/123_merged.mp4";
+
         Blob created = bucket.create(blobString, testFile, Bucket.BlobWriteOption.userProject("goalchallenge-8de36"));
         String s = created.getSelfLink();
 //        String s = created.getMediaLink();
         return s;
+    }
+
+    public void uploadVideoViaCurl(String url) throws IOException {
+        System.out.println("Curl " + VIDEOS_MERGED_DIR + "/123_merged.mp4" + url);
+        Process p = Runtime.getRuntime().exec(new String[]{"./curl.sh", VIDEOS_MERGED_DIR + "/123_merged.mp4", url});
+        BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+        while ((in.readLine()) != null) {
+            // wait till read
+        }
+        in.close();
+    }
+
+    public void rmfolds(){
+
     }
 }

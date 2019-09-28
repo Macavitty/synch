@@ -9,7 +9,7 @@ public class PoseEstimation {
 
     public Integer ranIgorScript(String absolutePath, String origVideo, String userVideo) throws IOException, InterruptedException {
         Integer score;
-        Process p = Runtime.getRuntime().exec("python3 " + absolutePath + " " + origVideo + " " + userVideo);
+        Process p = Runtime.getRuntime().exec("python3 " + "/home/ubuntu/test.py" + " " + origVideo + " " + userVideo);
         BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
         StringBuilder buffer = new StringBuilder();
         String line = "";
@@ -22,3 +22,5 @@ public class PoseEstimation {
         return score;
     }
 }
+
+//
