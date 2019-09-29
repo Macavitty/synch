@@ -36,8 +36,8 @@ public class VideoManager {
     }
 
     String downloadVideo(URL videoUrl) {
+        System.out.println("Lets download * * *");
         new File(VIDEOS_POSTED_DIR + "/123.mp4").deleteOnExit();
-
         InputStream is = null;
         BufferedOutputStream outStream = null;
         try {
@@ -47,7 +47,7 @@ public class VideoManager {
 
             URLConnection conn = videoUrl.openConnection();
             is = conn.getInputStream();
-            buf = new byte[59];
+            buf = new byte[100];
             while ((byteRead = is.read(buf)) != -1) {
                 outStream.write(buf, 0, byteRead);
                 byteWritten += byteRead;
@@ -109,7 +109,7 @@ public class VideoManager {
         InputStream testFile = new FileInputStream(path);
         String blobString = "folder/123_merged.mp4";
 
-        Blob created = bucket.create(blobString, testFile, Bucket.BlobWriteOption.userProject("goalchallenge-8de36"));
+        Blob created = bucket.create(blobString, testFile, Bucket.BlobWriteOption.userProject("thelats-ef16e"));
         String s = created.getSelfLink();
 //        String s = created.getMediaLink();
         return s;

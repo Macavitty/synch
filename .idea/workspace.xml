@@ -3,13 +3,23 @@
   <component name="ChangeListManager">
     <list default="true" id="d98809e5-4201-4d7c-adf8-c29f5802d2c3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/archive-1.0-SNAPSHOT-jar-with-dependencies.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/goalchallenge-8de36-firebase-adminsdk-cs8im-41908d0450.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mav/FireManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mav/FireManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mav/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mav/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mav/PoseEstimation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mav/PoseEstimation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mav/VideoManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mav/VideoManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/archive-1.0-SNAPSHOT-jar-with-dependencies.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/archive-1.0-SNAPSHOT-jar-with-dependencies.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/archive-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/archive-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/sports.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mav/FireManager$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mav/FireManager$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mav/FireManager$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mav/FireManager$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mav/FireManager$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mav/FireManager$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mav/FireManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mav/FireManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mav/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mav/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mav/PoseEstimation.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mav/PoseEstimation.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mav/VideoManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mav/VideoManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

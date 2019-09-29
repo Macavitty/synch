@@ -10,7 +10,6 @@ import com.google.firebase.database.*;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
-import java.nio.file.FileSystems;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,7 +31,7 @@ public class FireManager {
     String urlFromAlina = "";
 
 
-    private FileInputStream serviceKeysJson = new FileInputStream(workingDir + "/goalchallenge-8de36-firebase-adminsdk-cs8im-41908d0450.json");
+    private FileInputStream serviceKeysJson = new FileInputStream(workingDir + "/thelats-ef16e-firebase-adminsdk-uf03f-12c0ed8911.json");
     public Map<String, UserModel> users = new HashMap<>();
 
 
@@ -45,8 +44,8 @@ public class FireManager {
     public void initFire(   ) throws IOException {
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceKeysJson))
-                .setDatabaseUrl("https://goalchallenge-8de36.firebaseio.com/")
-                .setStorageBucket("goalchallenge-8de36.appspot.com")
+                .setDatabaseUrl("https://thelats-ef16e.firebaseio.com/")
+                .setStorageBucket("thelats-ef16e.appspot.com")
                 .build();
         firebaseApp = FirebaseApp.initializeApp(options);
         initDataBase();
@@ -65,7 +64,7 @@ public class FireManager {
                     String snapKey = dataSnapshot.getKey();
                     String uid = dataSnapshot.child("userid").getValue().toString();
                     if (!users.containsKey(snapKey)) {
-                        usr = new UserModel(uid, dataSnapshot.child("postedvideo").getValue().toString(), -10);
+                        usr = new UserModel(uid, dataSnapshot.child("postedvideo").getValue().toString(), 10);
                         users.put(snapKey, usr);
                     } else {
                         // user participates in new challenge
@@ -73,7 +72,7 @@ public class FireManager {
                         usr.setScore(0);
                     }
                     String downPath = videoManager.downloadVideo(videoManager.getPostVideoUrl(dataSnapshot));
-                    Integer score = poseEstimation.ranIgorScript(workingDir + "/script.py", "orig", downPath);
+                    Integer score = poseEstimation.ranIgorScript(workingDir + "/script.py", "/home/ubuntu/video_cutted.mp4", downPath);
                     usr.setScore(score);
                     String mergedPath = videoManager.createMergedVideo(videoManager.getOriginVideo(), downPath, score);
                     System.out.println("MERGED");
